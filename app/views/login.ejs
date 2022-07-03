@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="join-container">
+			<main id="join-main" class="join-main">
+				<form action="/api/auth/login" method="POST">
+					<div class="form-control">
+						<label for="room">username</label>
+						<input
+						type="text"
+						name="username"
+						id="username"
+						placeholder="Enter username..."
+						required
+					/>
+					<div class="form-control">
+						<label for="room">password</label>
+						<input
+						type="text"
+						name="password"
+						id="password"
+						placeholder="Enter password..."
+						required
+					/>
+					</div>
+					<button type="submit" class="btn">Login</button>
+				</form>
+				<br>
+			</main>
+		</div>
+	</body>
+</html>

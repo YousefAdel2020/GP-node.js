@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="join-container">
+			<main id="join-main" class="join-main">
+				<form action="chat.html">
+					<div class="form-control">
+						<label for="room">Room</label>
+						<input
+						type="text"
+						name="room"
+						id="room"
+						placeholder="Enter room name..."
+						required
+					/>
+					</div>
+					<button type="submit" class="btn">Join Chat</button>
+				</form>
+				<br>
+				<h2>
+					Friends
+				</h2>
+			</main>
+		</div>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+
+			const chatForm = document.getElementById('join-main');
+
+			// Output message to DOM
+			function outputForm(friend) {
+
+				const form = document.createElement('form');
+				form.action = "chat.html"
+
+				const div = document.createElement('div');
+				div.classList.add('form-control');
+
+				const label = document.createElement("label")
+				label.innerText = "Room";
+				div.appendChild(label)
+
+				const input = document.createElement('input');
+				input.setAttribute("type", "text");
+				input.setAttribute("name", "room");
+				input.setAttribute("id", "room");
+				input.setAttribute("value", friend.username);
+
+				div.appendChild(input)
+				
+				form.appendChild(div);
+
+				const btn = document.createElement('button');
+				btn.setAttribute("type", "submit");
+				btn.classList.add('btn');
+				btn.innerText = "Join Chat";
+
+				form.appendChild(btn);
+
+				chatForm.appendChild(form);
+
+				const br = document.createElement('br');
+
+				chatForm.appendChild(br);
+
+			}
+
+			const socket = io();
+			socket.on('getfriends', (friends) => {
+				// console.log("friends", friends)
+
+				for(let i = 0; i < friends.length; ++i) {
+					outputForm(friends[i]);
+				}
+			});
+
+			
+	  
+		</script>
+	</body>
+</html>
